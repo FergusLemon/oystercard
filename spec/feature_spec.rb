@@ -1,6 +1,10 @@
  #In order to use public transport
  #As a customer
  #I want money on my card
+puts "oystercard = Oystercard.new"
+puts oystercard = Oystercard.new
+puts "oystercard_10 = Oystercard.new(10)"
+puts oystercard_10 = Oystercard.new(10)
  #
  #In order to keep using public transport
  #As a customer
