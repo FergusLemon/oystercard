@@ -10,6 +10,10 @@ puts oystercard_10 = Oystercard.new(10)
  #In order to keep using public transport
  #As a customer
  #I want to add money to my card
+puts "oystercard.top_up(20)"
+puts oystercard.top_up(20)
+puts "oystercard.balance"
+puts oystercard.balance
  #
  #In order to protect my money
  #As a customer
