@@ -15,6 +15,9 @@ describe Oystercard do
       it 'can be chosen by the user when the card is purchased' do
         expect(oystercard_10.balance).to eq(10)
       end
+      it 'has a maximum balance of 90' do
+        expect(described_class::MAX_BALANCE).to eq(90)
+      end
     end
   end
 
@@ -26,6 +29,10 @@ describe Oystercard do
       it 'increases the balance on the card by the amount topped up' do
         oystercard.top_up(20)
         expect(oystercard.balance).to eq(20)
+      end
+      it 'raises an error if the top up would exceed the max balance' do
+        oystercard.top_up(1)
+        expect{ oystercard.top_up(described_class::MAX_BALANCE) }.to raise_error(RuntimeError, "Sorry the maximum balance is #{described_class::MAX_BALANCE}, please try topping up a lower amount.")
       end
     end
   end
