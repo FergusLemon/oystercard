@@ -66,17 +66,29 @@ describe Oystercard do
   end
 
   describe '#touch_in' do
-    it 'updates the oystercard to being in use' do
-      expect { oystercard.touch_in }.to change { oystercard.in_use }.to(true)
+    context 'when the balance is above the minimum fare' do
+      before(:each) do
+        minimum_fare = described_class::MIN_FARE
+        oystercard.top_up(minimum_fare)
+      end
+      it 'updates the oystercard to being in use' do
+        expect { oystercard.touch_in }.to change { oystercard.in_use }.to(true)
+      end
+      it 'raises an error when the card is already in use' do
+        oystercard.touch_in
+        expect { oystercard.touch_in }.to raise_error(RuntimeError, "You must touch out before starting a new journey.")
+      end
     end
-    it 'raises an error when the card is already in use' do
-      oystercard.touch_in
-      expect { oystercard.touch_in }.to raise_error(RuntimeError, "You must touch out before starting a new journey.")
+    context 'when the balance is below the minimum fare' do
+      it 'raises an error when the balance on the card is insufficient' do
+        expect { oystercard.touch_in }.to raise_error(RuntimeError, "Your balance (£#{oystercard.balance}) is insufficient, you need a balance of £#{described_class::MIN_FARE} to travel.")
+      end
     end
   end
 
   describe '#touch_out' do
     it 'updates the oystercard to not being in use' do
+      oystercard.top_up(described_class::MIN_FARE)
       oystercard.touch_in
       expect { oystercard.touch_out }.to change { oystercard.in_use }.to(false)
     end
