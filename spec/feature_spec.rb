@@ -35,6 +35,8 @@ puts oystercard.deduct(50)
 # In order to get through the barriers
 # As a customer
 # I need to touch in and out
+puts 'oystercard.touch_in'
+puts oystercard.touch_in
 #
 # In order to pay for my journey
 # As a customer
