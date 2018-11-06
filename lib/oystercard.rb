@@ -18,6 +18,7 @@ class Oystercard
   end
 
   def touch_in
+    raise "You must touch out before starting a new journey." if in_journey?
     @in_use = true
   end
 
@@ -33,5 +34,9 @@ class Oystercard
 
   def insufficient_funds?(amount)
     balance - amount < 0
+  end
+
+  def in_journey?
+    in_use
   end
 end

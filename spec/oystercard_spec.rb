@@ -69,6 +69,10 @@ describe Oystercard do
     it 'updates the oystercard to being in use' do
       expect { oystercard.touch_in }.to change { oystercard.in_use }.to(true)
     end
+    it 'raises an error when the card is already in use' do
+      oystercard.touch_in
+      expect { oystercard.touch_in }.to raise_error(RuntimeError, "You must touch out before starting a new journey.")
+    end
   end
 
   describe '#touch_out' do
