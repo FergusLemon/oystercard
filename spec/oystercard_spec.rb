@@ -39,4 +39,20 @@ describe Oystercard do
       end
     end
   end
+
+  describe '#deduct' do
+    it 'allows a user to deduct money' do
+      expect(oystercard).to respond_to(:deduct).with(1).argument
+    end
+    context 'when there is money available' do
+      before(:each) do
+        large_top_up = rand(50..90)
+        oystercard.top_up(large_top_up)
+      end
+      it 'reduces the balance' do
+        small_deduction = rand(1..20)
+        expect { oystercard.deduct(small_deduction) }.to change { oystercard.balance }.by(-small_deduction)
+      end
+    end
+  end
 end
