@@ -9,18 +9,21 @@ class Oystercard
   end
 
   def top_up(amount)
-    raise "Sorry the maximum balance is #{MAX_BALANCE}, please try topping up a lower amount." if max_balance_hit?(amount)
+    raise "Sorry the maximum balance is #{MAX_BALANCE}, please try topping up \
+a lower amount." if max_balance_hit?(amount)
     @balance += amount
   end
 
   def touch_in
     raise "You must touch out before starting a new journey." if in_journey?
-    raise "Your balance (£#{self.balance}) is insufficient, you need a balance of £#{MIN_FARE} to travel." if low_balance?
+    raise "Your balance (£#{balance}) is insufficient, you need a balance \
+of £#{MIN_FARE} to travel." if low_balance?
     start_journey
   end
 
   def touch_out
-    raise "Your card appears not to have been touched in, please contact a member of station staff." unless in_journey?
+    raise "Your card appears not to have been touched in, please contact a \
+member of station staff." unless in_journey?
     deduct(MIN_FARE)
     finish_journey
   end
@@ -28,7 +31,8 @@ class Oystercard
   private
 
   def deduct(amount)
-    raise "Your balance is #{self.balance}, you do not have enough for this transaction." if insufficient_funds?(amount)
+    raise "Your balance is #{balance}, you do not have enough for this \
+transaction." if insufficient_funds?(amount)
     @balance -= amount
   end
 
