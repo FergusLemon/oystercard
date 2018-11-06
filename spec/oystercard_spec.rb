@@ -78,6 +78,10 @@ describe Oystercard do
       minimum_fare = described_class::MIN_FARE
       expect { oystercard.touch_out }.to change { oystercard.balance }.by(-minimum_fare)
     end
+    it 'raises an error if the oystercard is not in use' do
+      oystercard.touch_out
+      expect { oystercard.touch_out }.to raise_error(RuntimeError, "Your card appears not to have been touched in, please contact a member of station staff.")
+    end
   end
 end
 #      it 'raises an error if the deduction would take the balance below zero' do

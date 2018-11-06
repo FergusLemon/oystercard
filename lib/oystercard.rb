@@ -20,6 +20,7 @@ class Oystercard
   end
 
   def touch_out
+    raise "Your card appears not to have been touched in, please contact a member of station staff." unless in_journey?
     deduct(MIN_FARE)
     finish_journey
   end
