@@ -1,2 +1,2 @@
+--exclude-pattern "**/feature_spec.rb"
 --require spec_helper
---exclude-pattern "/spec/feature_spec.rb"
