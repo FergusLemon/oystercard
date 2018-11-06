@@ -53,6 +53,10 @@ describe Oystercard do
         small_deduction = rand(1..20)
         expect { oystercard.deduct(small_deduction) }.to change { oystercard.balance }.by(-small_deduction)
       end
+      it 'raises an error if the deduction would take the balance below zero' do
+        large_deduction = rand(91..100)
+        expect { oystercard.deduct(large_deduction) }.to raise_error(RuntimeError, "Your balance is #{oystercard.balance}, you do not have enough for this transaction.")
+      end
     end
   end
 end

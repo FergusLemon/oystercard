@@ -12,11 +12,16 @@ class Oystercard
   end
 
   def deduct(amount)
+    raise "Your balance is #{self.balance}, you do not have enough for this transaction." if insufficient_funds?(amount)
     @balance -= amount
   end
   private
 
   def max_balance_hit?(amount)
     balance + amount > MAX_BALANCE
+  end
+
+  def insufficient_funds?(amount)
+    balance - amount < 0
   end
 end
