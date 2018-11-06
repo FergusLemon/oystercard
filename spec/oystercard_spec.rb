@@ -70,4 +70,11 @@ describe Oystercard do
       expect { oystercard.touch_in }.to change { oystercard.in_use }.to(true)
     end
   end
+
+  describe '#touch_out' do
+    it 'updates the oystercard to not being in use' do
+      oystercard.touch_in
+      expect { oystercard.touch_out }.to change { oystercard.in_use }.to(false)
+    end
+  end
 end
