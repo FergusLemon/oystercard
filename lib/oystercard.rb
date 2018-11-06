@@ -13,11 +13,6 @@ class Oystercard
     @balance += amount
   end
 
-  def deduct(amount)
-    raise "Your balance is #{self.balance}, you do not have enough for this transaction." if insufficient_funds?(amount)
-    @balance -= amount
-  end
-
   def touch_in
     raise "You must touch out before starting a new journey." if in_journey?
     raise "Your balance (£#{self.balance}) is insufficient, you need a balance of £#{MIN_FARE} to travel." if low_balance?
@@ -25,10 +20,16 @@ class Oystercard
   end
 
   def touch_out
+    deduct(MIN_FARE)
     finish_journey
   end
 
   private
+
+  def deduct(amount)
+    raise "Your balance is #{self.balance}, you do not have enough for this transaction." if insufficient_funds?(amount)
+    @balance -= amount
+  end
 
   def max_balance_hit?(amount)
     balance + amount > MAX_BALANCE

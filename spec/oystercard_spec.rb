@@ -45,26 +45,6 @@ describe Oystercard do
     end
   end
 
-  describe '#deduct' do
-    it 'allows a user to deduct money' do
-      expect(oystercard).to respond_to(:deduct).with(1).argument
-    end
-    context 'when there is money available' do
-      before(:each) do
-        large_top_up = rand(50..90)
-        oystercard.top_up(large_top_up)
-      end
-      it 'reduces the balance' do
-        small_deduction = rand(1..20)
-        expect { oystercard.deduct(small_deduction) }.to change { oystercard.balance }.by(-small_deduction)
-      end
-      it 'raises an error if the deduction would take the balance below zero' do
-        large_deduction = rand(91..100)
-        expect { oystercard.deduct(large_deduction) }.to raise_error(RuntimeError, "Your balance is #{oystercard.balance}, you do not have enough for this transaction.")
-      end
-    end
-  end
-
   describe '#touch_in' do
     context 'when the balance is above the minimum fare' do
       before(:each) do
@@ -87,10 +67,20 @@ describe Oystercard do
   end
 
   describe '#touch_out' do
-    it 'updates the oystercard to not being in use' do
+    before(:each) do
       oystercard.top_up(described_class::MIN_FARE)
       oystercard.touch_in
+    end
+    it 'updates the oystercard to not being in use' do
       expect { oystercard.touch_out }.to change { oystercard.in_use }.to(false)
+    end
+    it 'reduces the balance on the card by the minimum fare' do
+      minimum_fare = described_class::MIN_FARE
+      expect { oystercard.touch_out }.to change { oystercard.balance }.by(-minimum_fare)
     end
   end
 end
+#      it 'raises an error if the deduction would take the balance below zero' do
+#        large_deduction = rand(91..100)
+#        expect { oystercard.deduct(large_deduction) }.to raise_error(RuntimeError, "Your balance is #{oystercard.balance}, you do not have enough for this transaction.")
+#      end
