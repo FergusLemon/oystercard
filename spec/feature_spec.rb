@@ -25,13 +25,13 @@ puts 'RuntimeError: Sorry the maximum balance is 90, please try topping up a low
 # In order to pay for my journey
 # As a customer
 # I need my fare deducted from my card
-puts '>> oystercard.deduct(10)'
-puts oystercard.deduct(10)
+puts '>> oystercard.touch_out'
+puts oystercard.touch_out
 puts '>> oystercard.balance'
 puts oystercard.balance
-puts '>> oystercard.deduct(50)'
+# puts '>> oystercard.deduct(50)'
 # puts oystercard.deduct(50)
-puts 'RuntimeError: Your balance is 10, you do not have enough for this transaction.'
+# puts 'RuntimeError: Your balance is 10, you do not have enough for this transaction.'
 #
 # In order to get through the barriers
 # As a customer
@@ -55,6 +55,10 @@ puts 'RuntimeError: Your balance (£0) is insufficient, you need a balance of £
 # In order to pay for my journey
 # As a customer
 # I need to pay for my journey when it's complete
+puts '>> oystercard.touch_out'
+puts oystercard.touch_out
+puts '>> oystercard.balance'
+puts oystercard.balance
 #
 # In order to pay for my journey
 # As a customer
