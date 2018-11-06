@@ -6,7 +6,7 @@ describe Oystercard do
 
   context 'on initialization' do
     describe '#balance' do
-      it 'has a balance' do
+      it 'displays a balance' do
         expect(oystercard).to respond_to(:balance)
       end
       it 'has a default balance of zero' do
@@ -23,7 +23,7 @@ describe Oystercard do
 
   context 'when topping up' do
     describe '#top_up' do
-      it 'can be topped up by a user' do
+      it 'allows a user to add money' do
         expect(oystercard).to respond_to(:top_up).with(1).argument
       end
       it 'increases the balance on the card by the amount topped up' do
