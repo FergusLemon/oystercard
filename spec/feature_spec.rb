@@ -18,6 +18,8 @@ puts oystercard.balance
  #In order to protect my money
  #As a customer
  #I don't want to put too much money on my card
+puts "oystercard.top_up(100)"
+puts oystercard.top_up(100)
  #
  #In order to pay for my journey
  #As a customer
