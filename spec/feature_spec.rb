@@ -24,6 +24,13 @@ puts 'oystercard.top_up(100)'
 # In order to pay for my journey
 # As a customer
 # I need my fare deducted from my card
+puts 'oystercard.deduct(10)'
+puts oystercard.deduct(10)
+puts 'oystercard.balance'
+puts oystercard.balance
+puts
+puts 'oystercard.deduct(50)'
+puts oystercard.deduct(50)
 #
 # In order to get through the barriers
 # As a customer
