@@ -19,6 +19,11 @@ describe Oystercard do
         expect(described_class::MAX_BALANCE).to eq(90)
       end
     end
+    describe '#in_use' do
+      it 'is not in use by default' do
+        expect(oystercard.in_use).to eq(false)
+      end
+    end
   end
 
   context 'when topping up' do
@@ -57,6 +62,12 @@ describe Oystercard do
         large_deduction = rand(91..100)
         expect { oystercard.deduct(large_deduction) }.to raise_error(RuntimeError, "Your balance is #{oystercard.balance}, you do not have enough for this transaction.")
       end
+    end
+  end
+
+  describe '#touch_in' do
+    it 'updates the oystercard to being in use' do
+      expect { oystercard.touch_in }.to change { oystercard.in_use }.to(true)
     end
   end
 end

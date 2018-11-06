@@ -1,9 +1,10 @@
 class Oystercard
-  attr_reader :balance
+  attr_reader :balance, :in_use
   MAX_BALANCE = 90
 
   def initialize(balance = 0)
     @balance = balance
+    @in_use = false
   end
 
   def top_up(amount)
@@ -15,6 +16,11 @@ class Oystercard
     raise "Your balance is #{self.balance}, you do not have enough for this transaction." if insufficient_funds?(amount)
     @balance -= amount
   end
+
+  def touch_in
+    @in_use = true
+  end
+
   private
 
   def max_balance_hit?(amount)
