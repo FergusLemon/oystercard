@@ -27,12 +27,15 @@ describe Oystercard do
         expect(oystercard).to respond_to(:top_up).with(1).argument
       end
       it 'increases the balance on the card by the amount topped up' do
-        oystercard.top_up(20)
-        expect(oystercard.balance).to eq(20)
+        random_top_up = rand(0..90)
+        oystercard.top_up(random_top_up)
+        expect(oystercard.balance).to eq(random_top_up)
       end
       it 'raises an error if the top up would exceed the max balance' do
-        oystercard.top_up(1)
-        expect{ oystercard.top_up(described_class::MAX_BALANCE) }.to raise_error(RuntimeError, "Sorry the maximum balance is #{described_class::MAX_BALANCE}, please try topping up a lower amount.")
+        max_balance = described_class::MAX_BALANCE
+        oystercard.top_up(max_balance)
+        random_top_up = rand(0..90)
+        expect { oystercard.top_up(random_top_up) }.to raise_error(RuntimeError, "Sorry the maximum balance is #{described_class::MAX_BALANCE}, please try topping up a lower amount.")
       end
     end
   end
