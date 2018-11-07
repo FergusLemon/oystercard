@@ -3,7 +3,7 @@ require 'oystercard'
 describe Oystercard do
   let(:oystercard) { described_class.new }
   let(:oystercard_10) { described_class.new(10) }
-  let(:entry_station) { double("entry station") }
+  let(:station) { double("station") }
 
   context 'on initialization' do
     describe '#balance' do
@@ -55,18 +55,18 @@ please try topping up a lower amount."
         oystercard.top_up(minimum_fare)
       end
       it 'raises an error when the card is already in use' do
-        oystercard.touch_in(entry_station)
-        expect { oystercard.touch_in(entry_station) }.to raise_error \
+        oystercard.touch_in(station)
+        expect { oystercard.touch_in(station) }.to raise_error \
           "You must touch out before starting a new journey."
       end
       it 'records the station name where it touches in' do
-        oystercard.touch_in(entry_station)
-        expect(oystercard.entry_station).to eq(entry_station)
+        oystercard.touch_in(station)
+        expect(oystercard.entry_station).to eq(station)
       end
     end
     context 'when the balance is below the minimum fare' do
       it 'raises an error when the balance on the card is insufficient' do
-        expect { oystercard.touch_in(entry_station) }.to raise_error \
+        expect { oystercard.touch_in(station) }.to raise_error \
           "Your balance (£#{oystercard.balance}) is insufficient, you need a \
 balance of £#{described_class::MIN_FARE} to travel."
       end
@@ -76,7 +76,7 @@ balance of £#{described_class::MIN_FARE} to travel."
   describe '#touch_out' do
     before(:each) do
       oystercard.top_up(described_class::MIN_FARE)
-      oystercard.touch_in(entry_station)
+      oystercard.touch_in(station)
     end
     it 'reduces the balance on the card by the minimum fare' do
       minimum_fare = described_class::MIN_FARE
