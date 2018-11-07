@@ -100,6 +100,9 @@ balance of £#{described_class::MIN_FARE} to travel."
         "Your card appears not to have been touched in, please contact a \
 member of station staff."
     end
+    it 'updates the entry station to a nil value' do
+      expect { oystercard.touch_out }.to change { oystercard.entry_station }.to(nil)
+    end
   end
 end
 #      it 'raises an error if the deduction takes the balance below zero' do

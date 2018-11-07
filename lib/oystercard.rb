@@ -28,6 +28,7 @@ of £#{MIN_FARE} to travel." if low_balance?
 member of station staff." unless in_journey?
     deduct(MIN_FARE)
     finish_journey
+    @entry_station = nil
   end
 
   private
