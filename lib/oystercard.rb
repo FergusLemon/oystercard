@@ -27,7 +27,7 @@ of £#{MIN_FARE} to travel." if low_balance?
 member of station staff." unless in_journey?
     deduct(MIN_FARE)
     journey_history << record_journey(station)
-    @entry_station = nil
+    reset_station_history
   end
 
   private
@@ -57,5 +57,9 @@ transaction." if insufficient_funds?(amount)
   def record_journey(station)
     journey = { @entry_station => station }
     journey
+  end
+
+  def reset_station_history
+    @entry_station = nil
   end
 end
