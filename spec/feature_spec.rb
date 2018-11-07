@@ -27,8 +27,8 @@ puts 'RuntimeError: Sorry the maximum balance is 90, please try topping up a low
 # I need my fare deducted from my card
 puts '>> oystercard.touch_in(:london_bridge)'
 puts oystercard.touch_in(:london_bridge)
-puts '>> oystercard.touch_out'
-puts oystercard.touch_out
+puts '>> oystercard.touch_out(:southwark)'
+puts oystercard.touch_out(:southwark)
 puts '>> oystercard.balance'
 puts oystercard.balance
 # puts '>> oystercard.deduct(50)'
@@ -40,8 +40,8 @@ puts oystercard.balance
 # I need to touch in and out
 puts '>> oystercard.touch_in(:london_bridge)'
 puts oystercard.touch_in(:london_bridge)
-puts '>> oystercard.touch_out'
-puts oystercard.touch_out
+puts '>> oystercard.touch_out(:southwark)'
+puts oystercard.touch_out(:southwark)
 #
 # In order to pay for my journey
 # As a customer
@@ -59,8 +59,8 @@ puts 'RuntimeError: Your balance (£0) is insufficient, you need a balance of £
 # I need to pay for my journey when it's complete
 puts '>> oystercard.touch_in(:london_bridge)'
 puts oystercard.touch_in(:london_bridge)
-puts '>> oystercard.touch_out'
-puts oystercard.touch_out
+puts '>> oystercard.touch_out(:southwark)'
+puts oystercard.touch_out(:southwark)
 puts '>> oystercard.balance'
 puts oystercard.balance
 #
@@ -75,6 +75,8 @@ puts oystercard.entry_station
 # In order to know where I have been
 # As a customer
 # I want to see to all my previous trips
+puts '>> oystercard.journey_history'
+puts oystercard.journey_history
 #
 # In order to know how far I have travelled
 # As a customer
