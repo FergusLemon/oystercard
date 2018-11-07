@@ -25,6 +25,11 @@ describe Oystercard do
         expect(oystercard.entry_station).to eq(nil)
       end
     end
+    describe '#journey_history' do
+      it 'is an empty array by default' do
+        expect(oystercard.journey_history).to eq([])
+      end
+    end
   end
 
   context 'when topping up' do
