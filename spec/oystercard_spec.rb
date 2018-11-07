@@ -20,11 +20,6 @@ describe Oystercard do
         expect(described_class::MAX_BALANCE).to eq(90)
       end
     end
-    describe '#in_use' do
-      it 'is not in use by default' do
-        expect(oystercard.in_use).to eq(false)
-      end
-    end
     describe '#entry_station' do
       it 'is nil by default' do
         expect(oystercard.entry_station).to eq(nil)
@@ -59,9 +54,6 @@ please try topping up a lower amount."
         minimum_fare = described_class::MIN_FARE
         oystercard.top_up(minimum_fare)
       end
-      it 'updates the oystercard to being in use' do
-        expect { oystercard.touch_in(entry_station) }.to change { oystercard.in_use }.to(true)
-      end
       it 'raises an error when the card is already in use' do
         oystercard.touch_in(entry_station)
         expect { oystercard.touch_in(entry_station) }.to raise_error \
@@ -85,9 +77,6 @@ balance of £#{described_class::MIN_FARE} to travel."
     before(:each) do
       oystercard.top_up(described_class::MIN_FARE)
       oystercard.touch_in(entry_station)
-    end
-    it 'updates the oystercard to not being in use' do
-      expect { oystercard.touch_out }.to change { oystercard.in_use }.to(false)
     end
     it 'reduces the balance on the card by the minimum fare' do
       minimum_fare = described_class::MIN_FARE

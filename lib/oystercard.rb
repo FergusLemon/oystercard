@@ -1,11 +1,10 @@
 class Oystercard
-  attr_reader :balance, :in_use, :entry_station
+  attr_reader :balance, :entry_station
   MAX_BALANCE = 90
   MIN_FARE = 1
 
   def initialize(balance = 0)
     @balance = balance
-    @in_use = false
     @entry_station = nil
   end
 
@@ -19,7 +18,6 @@ a lower amount." if max_balance_hit?(amount)
     raise "You must touch out before starting a new journey." if in_journey?
     raise "Your balance (£#{balance}) is insufficient, you need a balance \
 of £#{MIN_FARE} to travel." if low_balance?
-    start_journey
     @entry_station = entry_station
   end
 
@@ -27,7 +25,6 @@ of £#{MIN_FARE} to travel." if low_balance?
     raise "Your card appears not to have been touched in, please contact a \
 member of station staff." unless in_journey?
     deduct(MIN_FARE)
-    finish_journey
     @entry_station = nil
   end
 
@@ -51,15 +48,7 @@ transaction." if insufficient_funds?(amount)
     balance < MIN_FARE
   end
 
-  def start_journey
-    @in_use = true
-  end
-
-  def finish_journey
-    @in_use = false
-  end
-
   def in_journey?
-    in_use
+    entry_station
   end
 end
