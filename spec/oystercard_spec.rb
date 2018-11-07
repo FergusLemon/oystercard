@@ -97,14 +97,9 @@ member of station staff."
     it 'updates the entry station to a nil value' do
       expect { oystercard.touch_out(station) }.to change { oystercard.entry_station }.to(nil)
     end
-    it 'records the exit station' do
-      expect { oystercard.touch_out(station) }.to change { oystercard.exit_station }.to(station)
+    it 'records the journey' do
+      oystercard.touch_out(station)
+      expect(oystercard.journey_history).to_not be_empty
     end
   end
 end
-#      it 'raises an error if the deduction takes the balance below zero' do
-#        large_deduction = rand(91..100)
-#        expect { oystercard.deduct(large_deduction) }.to raise_error \
-#        "Your balance is #{oystercard.balance}, you do not have enough for \
-# this transaction."
-#      end
