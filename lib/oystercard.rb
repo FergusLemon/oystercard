@@ -55,7 +55,7 @@ transaction." if insufficient_funds?(amount)
   end
 
   def record_journey(station)
-    journey = { entry_station: station }
+    journey = { @entry_station => station }
     journey
   end
 end
