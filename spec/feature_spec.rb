@@ -25,6 +25,8 @@ puts 'RuntimeError: Sorry the maximum balance is 90, please try topping up a low
 # In order to pay for my journey
 # As a customer
 # I need my fare deducted from my card
+puts '>> oystercard.touch_in(:london_bridge)'
+puts oystercard.touch_in(:london_bridge)
 puts '>> oystercard.touch_out'
 puts oystercard.touch_out
 puts '>> oystercard.balance'
@@ -36,8 +38,8 @@ puts oystercard.balance
 # In order to get through the barriers
 # As a customer
 # I need to touch in and out
-puts '>> oystercard.touch_in'
-puts oystercard.touch_in
+puts '>> oystercard.touch_in(:london_bridge)'
+puts oystercard.touch_in(:london_bridge)
 puts '>> oystercard.touch_out'
 puts oystercard.touch_out
 #
@@ -48,13 +50,15 @@ puts '>> another_oystercard = Oystercard.new'
 puts another_oystercard = Oystercard.new
 puts '>> another_oystercard.balance'
 puts another_oystercard.balance
-puts '>> another_oystercard.touch_in'
+puts '>> another_oystercard.touch_in(:london_bridge)'
 # puts another_oystercard.touch_in
 puts 'RuntimeError: Your balance (£0) is insufficient, you need a balance of £1 to travel.'
 #
 # In order to pay for my journey
 # As a customer
 # I need to pay for my journey when it's complete
+puts '>> oystercard.touch_in(:london_bridge)'
+puts oystercard.touch_in(:london_bridge)
 puts '>> oystercard.touch_out'
 puts oystercard.touch_out
 puts '>> oystercard.balance'
@@ -63,6 +67,10 @@ puts oystercard.balance
 # In order to pay for my journey
 # As a customer
 # I need to know where I've travelled from
+puts '>> oystercard.touch_in(:euston)'
+puts oystercard.touch_in(:euston)
+puts '>> oystercard.entry_station'
+puts oystercard.entry_station
 #
 # In order to know where I have been
 # As a customer
