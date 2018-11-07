@@ -81,6 +81,8 @@ puts oystercard.journey_history
 # In order to know how far I have travelled
 # As a customer
 # I want to know what zone a station is in
+puts '>> station = Station.new(:clapham_south, 2)'
+puts station = Station.new(:clapham_south, 2)
 #
 # In order to be charged correctly
 # As a customer
