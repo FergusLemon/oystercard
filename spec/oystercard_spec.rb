@@ -24,6 +24,11 @@ describe Oystercard do
         expect(oystercard.in_use).to eq(false)
       end
     end
+    describe '#entry_station' do
+      it 'is nil by default' do
+        expect(oystercard.entry_station).to eq(nil)
+      end
+    end
   end
 
   context 'when topping up' do
