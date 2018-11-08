@@ -2,6 +2,7 @@ require 'journey'
 
 describe Journey do
   let(:entry_station) { double :station }
+  let(:exit_station) { double :station }
   let(:journey) { described_class.new(entry_station) }
   let(:other_journey) { described_class.new }
 
@@ -16,6 +17,11 @@ describe Journey do
         it 'records a nil value for the entry station' do
           expect(other_journey.entry_station).to eq(nil)
         end
+      end
+    end
+    describe '#exit_station' do
+      it 'records a nil value by default' do
+        expect(journey.exit_station).to eq(nil)
       end
     end
   end
