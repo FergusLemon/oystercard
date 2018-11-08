@@ -6,4 +6,7 @@ class Journey
     @exit_station = nil
   end
 
+  def record_exit(station)
+    @exit_station = station
+  end
 end
