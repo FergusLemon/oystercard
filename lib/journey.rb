@@ -9,4 +9,6 @@ class Journey
   def record_exit(station)
     @exit_station = station
   end
+
+  priv
 end
