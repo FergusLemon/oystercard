@@ -10,5 +10,7 @@ class Journey
     @exit_station = station
   end
 
-  priv
+  def is_valid?
+    self.entry_station && self.exit_station
+  end
 end
