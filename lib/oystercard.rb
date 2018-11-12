@@ -22,8 +22,6 @@ of £#{MIN_FARE} to travel." if low_balance?
   end
 
   def touch_out(station)
-    raise "Your card appears not to have been touched in, please contact a \
-member of station staff." unless in_journey?
     deduct(MIN_FARE)
     journey_history << record_journey(station)
     reset_station_history

@@ -85,12 +85,6 @@ balance of £#{described_class::MIN_FARE} to travel."
       expect { oystercard.touch_out(exit_station) }.to change \
         { oystercard.balance }.by(-minimum_fare)
     end
-    it 'raises an error if the oystercard is not in use' do
-      oystercard.touch_out(exit_station)
-      expect { oystercard.touch_out(exit_station) }.to raise_error \
-        "Your card appears not to have been touched in, please contact a \
-member of station staff."
-    end
     it 'updates the entry station to a nil value' do
       expect { oystercard.touch_out(exit_station) }.to change { oystercard.entry_station }.to(nil)
     end
