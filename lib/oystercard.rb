@@ -16,7 +16,6 @@ a lower amount." if max_balance_hit?(amount)
   end
 
   def touch_in(station)
-    raise "You must touch out before starting a new journey." if in_journey?
     raise "Your balance (£#{balance}) is insufficient, you need a balance \
 of £#{MIN_FARE} to travel." if low_balance?
     @entry_station = station

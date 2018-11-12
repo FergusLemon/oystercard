@@ -61,11 +61,6 @@ please try topping up a lower amount."
         minimum_fare = described_class::MIN_FARE
         oystercard.top_up(minimum_fare)
       end
-      it 'raises an error when the card is already in use' do
-        oystercard.touch_in(entry_station)
-        expect { oystercard.touch_in(entry_station) }.to raise_error \
-          "You must touch out before starting a new journey."
-      end
       it 'records the station name where it touches in' do
         oystercard.touch_in(entry_station)
         expect(oystercard.entry_station).to eq(entry_station)
