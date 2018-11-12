@@ -10,7 +10,7 @@ class Journey
     @exit_station = station
   end
 
-  def is_valid?
+  def complete?
    true if entry_station && exit_station
   end
 end

@@ -33,10 +33,13 @@ describe Journey do
     end
   end
 
-  describe '#is_valid?' do
+  describe '#complete?' do
     it 'knows that a valid journey has an entry and exit station' do
       journey.record_exit(exit_station)
-      expect(journey.is_valid?).to eq(true)
+      expect(journey).to be_complete
+    end
+    it 'knows that a journey is incomplete if there is only an entry_station' do
+      expect(journey).not_to be_complete
     end
   end
 end
