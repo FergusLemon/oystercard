@@ -22,11 +22,6 @@ describe Oystercard do
         expect(described_class::MAX_BALANCE).to eq(90)
       end
     end
-    describe '#entry_station' do
-      it 'is nil by default' do
-        expect(oystercard.entry_station).to eq(nil)
-      end
-    end
     describe '#journey_history' do
       it 'is an empty array by default' do
         expect(oystercard.journey_history).to eq([])
@@ -56,16 +51,6 @@ please try topping up a lower amount."
   end
 
   describe '#touch_in' do
-    context 'when the balance is above the minimum fare' do
-      before(:each) do
-        minimum_fare = described_class::MIN_FARE
-        oystercard.top_up(minimum_fare)
-      end
-      it 'records the station name where it touches in' do
-        oystercard.touch_in(entry_station)
-        expect(oystercard.entry_station).to eq(entry_station)
-      end
-    end
     context 'when the balance is below the minimum fare' do
       it 'raises an error when the balance on the card is insufficient' do
         expect { oystercard.touch_in(entry_station) }.to raise_error \
@@ -84,9 +69,6 @@ balance of £#{described_class::MIN_FARE} to travel."
       minimum_fare = described_class::MIN_FARE
       expect { oystercard.touch_out(exit_station) }.to change \
         { oystercard.balance }.by(-minimum_fare)
-    end
-    it 'updates the entry station to a nil value' do
-      expect { oystercard.touch_out(exit_station) }.to change { oystercard.entry_station }.to(nil)
     end
     it 'records the journey' do
       oystercard.touch_out(exit_station)
