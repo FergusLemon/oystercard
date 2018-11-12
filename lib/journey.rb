@@ -11,6 +11,6 @@ class Journey
   end
 
   def is_valid?
-    self.entry_station && self.exit_station
+   true if entry_station && exit_station
   end
 end
