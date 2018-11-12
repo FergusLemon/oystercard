@@ -47,10 +47,6 @@ transaction." if insufficient_funds?(amount)
     balance < MIN_FARE
   end
 
-  def in_journey?
-    entry_station
-  end
-
   def record_journey(station)
     journey = { @entry_station => station }
     journey
