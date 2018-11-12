@@ -31,6 +31,13 @@ describe Journey do
       expect(journey).to have_constant(:MIN_FARE)
     end
   end
+
+  describe 'PENALTY_FARE' do
+    it 'has a penalty fare' do
+      expect(journey).to have_constant(:PENALTY_FARE)
+    end
+  end
+
   describe '#record_exit' do
     it 'records the exit station' do
       journey.record_exit(exit_station)
