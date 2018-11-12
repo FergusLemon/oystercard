@@ -38,6 +38,16 @@ describe Journey do
     end
   end
 
+  describe '#calculate_fare' do
+    context 'when it is a valid journey' do
+      it 'returns the minimun fare' do
+        minimum_fare = described_class::MIN_FARE
+        journey.record_exit(exit_station)
+        expect(journey.calculate_fare).to eq(minimum_fare)
+      end
+    end
+  end
+
   describe '#record_exit' do
     it 'records the exit station' do
       journey.record_exit(exit_station)

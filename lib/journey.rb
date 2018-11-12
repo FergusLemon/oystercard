@@ -12,6 +12,10 @@ class Journey
     @exit_station = station
   end
 
+  def calculate_fare
+    MIN_FARE if self.complete?
+  end
+
   def complete?
    true if entry_station && exit_station
   end
