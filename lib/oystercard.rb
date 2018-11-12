@@ -23,6 +23,7 @@ of £#{MIN_FARE} to travel." if low_balance?
 
   def touch_out(station)
     deduct(MIN_FARE)
+    journey_history.last.record_exit(station)
   end
 
   private
