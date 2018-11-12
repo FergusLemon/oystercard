@@ -26,6 +26,11 @@ describe Journey do
     end
   end
 
+  describe 'MIN_FARE' do
+    it 'has a minimum fare' do
+      expect(journey).to have_constant(:MIN_FARE)
+    end
+  end
   describe '#record_exit' do
     it 'records the exit station' do
       journey.record_exit(exit_station)
