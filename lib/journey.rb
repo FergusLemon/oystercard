@@ -16,6 +16,10 @@ class Journey
     MIN_FARE if self.complete?
   end
 
+  def calculate_penalty
+    self.check_valid_touch_in ? 0 : PENALTY_FARE
+  end
+
   def complete?
    true if entry_station && exit_station
   end

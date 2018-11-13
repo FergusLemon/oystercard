@@ -114,4 +114,11 @@ describe Journey do
       end
     end
   end
+
+  describe '#calculate_penalty' do
+    it 'returns PENALTY_FARE if the journey is invalid' do
+      penalty_fare = described_class::PENALTY_FARE
+      expect(journey.calculate_penalty).to eq(penalty_fare)
+    end
+  end
 end

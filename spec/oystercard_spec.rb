@@ -6,6 +6,7 @@ describe Oystercard do
   let(:entry_station) { double("entry station") }
   let(:exit_station) { double("exit station") }
   let(:journey) { double("journey", entry_station: entry_station, exit_station: exit_station) }
+  let(:penalty_fare) { 6 }
 
   context 'on initialization' do
     describe '#balance' do
@@ -56,6 +57,14 @@ please try topping up a lower amount."
         expect { oystercard.touch_in(entry_station) }.to raise_error \
           "Your balance (£#{oystercard.balance}) is insufficient, you need a \
 balance of £#{described_class::MIN_FARE} to travel."
+      end
+    end
+    context 'when the touch in is invalid' do
+      it 'deducts the penalty fare' do
+        oystercard.top_up(described_class::MIN_FARE)
+        oystercard.touch_in(entry_station)
+        expect { oystercard.touch_in(entry_station) }.to change \
+          { oystercard.balance }.by(-penalty_fare)
       end
     end
   end
