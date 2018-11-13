@@ -21,6 +21,7 @@ of £#{MIN_FARE} to travel." if low_balance?
     record_penalty unless journey_history.empty? || touch_in_expected?
     journey = Journey.new(station)
     journey_history << journey
+    self
   end
 
   def touch_out(station)

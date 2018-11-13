@@ -69,8 +69,8 @@ puts oystercard.balance
 # I need to know where I've travelled from
 puts '>> oystercard.touch_in(:euston)'
 puts oystercard.touch_in(:euston)
-puts '>> oystercard.entry_station'
-puts oystercard.entry_station
+puts '>> oystercard.journey_history.last.entry_station'
+puts oystercard.journey_history.last.entry_station
 #
 # In order to know where I have been
 # As a customer
@@ -87,6 +87,16 @@ puts station = Station.new(:clapham_south, 2)
 # In order to be charged correctly
 # As a customer
 # I need a penalty charge deducted if I fail to touch in or out
+puts '>> oystercard.touch_out(:southwark)'
+puts oystercard.touch_out(:southwark)
+puts '>> oystercard.balance'
+puts oystercard.balance
+puts '>> oystercard.touch_in(:euston)'
+puts oystercard.touch_in(:euston)
+puts '>> oystercard.touch_in(:euston)'
+puts oystercard.touch_in(:euston)
+puts '>> oystercard.balance'
+puts oystercard.balance
 #
 # In order to be charged the correct amount
 # As a customer
