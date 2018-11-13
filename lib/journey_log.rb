@@ -6,5 +6,11 @@ class JourneyLog
     @journey_klass = journey_klass
   end
 
+  def start_journey(station)
+    p journey_klass
+    journey = journey_klass.new(station)
+    p journey
+    journeys << journey
+  end
   private
 end
