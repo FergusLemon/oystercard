@@ -7,8 +7,16 @@ describe JourneyLog do
   let(:exit_station) { double("exit station") }
   let(:journey) { double("journey", entry_station: entry_station) }
 
+  before do |example|
+    unless example.metadata[:skip_before]
+      allow(journey_klass).to receive(:new).with(entry_station).\
+        and_return(journey)
+      journey_log.start_journey(entry_station)
+    end
+  end
+
   context 'on initialization' do
-    it 'contains an empty array to store journeys in' do
+    it 'contains an empty array to store journeys in', :skip_before do
       expect(journey_log.journeys).to eq([])
     end
     it 'contains an instance of journey_klass when passed as an argument' do
@@ -17,21 +25,13 @@ describe JourneyLog do
   end
 
   describe '#start_journey' do
-    before(:each) do
-      allow(journey_klass).to receive(:new).with(entry_station).\
-        and_return(journey)
-    end
     it 'stores a journey in its log' do
-      journey_log.start_journey(entry_station)
       expect(journey_log.journeys).to include(journey)
     end
   end
 
   describe '#end_journey' do
     before(:each) do
-      allow(journey_klass).to receive(:new).with(entry_station).\
-        and_return(journey)
-      journey_log.start_journey(entry_station)
       allow(journey).to receive(:record_exit).with(exit_station)
     end
     it 'adds an exit station to the current journey' do
