@@ -28,8 +28,8 @@ of £#{MIN_FARE} to travel." if low_balance?
       record_invalid_journey(station)
       record_penalty
     else
-      journey_history.last.record_exit(station)
-      deduct(journey_history.last.calculate_fare)
+      update_valid_journey(station)
+      record_fare
     end
   end
 
@@ -77,5 +77,13 @@ transaction." if insufficient_funds?(amount) && @penalty == false
     journey = Journey.new
     journey_history << journey
     journey_history.last.record_exit(station)
+  end
+
+  def update_valid_journey(station)
+    journey_history.last.record_exit(station)
+  end
+
+  def record_fare
+    deduct(journey_history.last.calculate_fare)
   end
 end
