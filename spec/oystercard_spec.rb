@@ -90,6 +90,13 @@ balance of £#{described_class::MIN_FARE} to travel."
       oystercard.touch_out(exit_station)
       expect(oystercard.journey_history).to_not be_empty
     end
+    context 'when the touch out is invalid' do
+      it 'deducts the penalty fare' do
+        oystercard.touch_out(exit_station)
+        expect { oystercard.touch_out(exit_station) }.to change \
+          { oystercard.balance }.by(-penalty_fare)
+      end
+    end
   end
 
 #   describe '#journey_history' do

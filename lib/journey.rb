@@ -13,18 +13,18 @@ class Journey
   end
 
   def calculate_fare
-    MIN_FARE if self.complete?
+    MIN_FARE
   end
 
   def calculate_penalty
-    self.was_valid ? 0 : PENALTY_FARE
+    PENALTY_FARE
   end
 
   def complete?
    true if entry_station && exit_station
   end
 
-  def was_valid
+  def was_expecting_touch_in
     self.complete? || (self.entry_station == nil && self.exit_station != nil)
   end
 
