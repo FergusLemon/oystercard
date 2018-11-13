@@ -17,14 +17,14 @@ class Journey
   end
 
   def calculate_penalty
-    self.check_valid_touch_in ? 0 : PENALTY_FARE
+    self.was_valid ? 0 : PENALTY_FARE
   end
 
   def complete?
    true if entry_station && exit_station
   end
 
-  def check_valid_touch_in
+  def was_valid
     self.complete? || (self.entry_station == nil && self.exit_station != nil)
   end
 

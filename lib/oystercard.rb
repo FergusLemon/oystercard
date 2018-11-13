@@ -31,7 +31,8 @@ of £#{MIN_FARE} to travel." if low_balance?
 
   def deduct(amount)
     raise "Your balance is #{balance}, you do not have enough for this \
-transaction." if insufficient_funds?(amount)
+transaction." if insufficient_funds?(amount) && \
+journey_history.last.was_valid
     @balance -= amount
   end
 
