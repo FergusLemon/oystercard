@@ -19,4 +19,8 @@ class Journey
   def complete?
    true if entry_station && exit_station
   end
+
+  def check_valid_touch_in
+    self.complete? || (self.entry_station == nil && self.exit_station != nil)
+  end
 end

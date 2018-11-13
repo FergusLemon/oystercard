@@ -74,4 +74,24 @@ describe Journey do
       end
     end
   end
+
+  describe '#check_valid_touch_in' do
+    context 'when touch in occurs after a complete journey' do
+      it 'returns true' do
+        journey.record_exit(exit_station)
+        expect(journey.check_valid_touch_in).to be true
+      end
+    end
+    context 'when touch in occurs after just a touch out' do
+      it 'returns true' do
+        other_journey.record_exit(exit_station)
+        expect(other_journey.check_valid_touch_in).to be true
+      end
+    end
+    context 'when there are two consecutive touch ins' do
+      it 'returns false' do
+        expect(journey.check_valid_touch_in).to be false
+      end
+    end
+  end
 end
