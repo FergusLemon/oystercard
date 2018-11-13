@@ -22,7 +22,6 @@ describe JourneyLog do
     end
     it 'stores a journey in its log' do
       journey_log.start_journey(entry_station)
-      p "This is #{journey}"
       expect(journey_log.journeys).to include(journey)
     end
   end

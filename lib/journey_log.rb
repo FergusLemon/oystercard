@@ -7,9 +7,7 @@ class JourneyLog
   end
 
   def start_journey(station)
-    p journey_klass
     journey = journey_klass.new(station)
-    p journey
     journeys << journey
   end
   private
