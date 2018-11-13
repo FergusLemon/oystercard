@@ -1,7 +1,10 @@
 class JourneyLog
-  attr_reader :journeys
+  attr_reader :journeys, :journey_klass
 
-  def initialize
+  def initialize(journey_klass = Journey)
     @journeys = []
+    @journey_klass = journey_klass
   end
+
+  private
 end
