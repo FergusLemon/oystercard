@@ -67,6 +67,13 @@ balance of £#{described_class::MIN_FARE} to travel."
           { oystercard.balance }.by(-penalty_fare)
       end
     end
+    context 'when the touch in is valid' do
+      it 'does not deduct anything' do
+        oystercard.top_up(described_class::MIN_FARE)
+        oystercard.touch_in(entry_station)
+        expect(oystercard.balance).to eq(described_class::MIN_FARE)
+      end
+    end
   end
 
   describe '#touch_out' do

@@ -28,7 +28,7 @@ class Journey
     self.complete? || (self.entry_station == nil && self.exit_station != nil)
   end
 
-  def check_valid_touch_out
+  def was_expecting_touch_out
     self.entry_station != nil && self.exit_station == nil
   end
 end

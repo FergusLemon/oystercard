@@ -95,22 +95,22 @@ describe Journey do
     end
   end
 
-  describe '#check_valid_touch_out' do
+  describe '#was_expecting_touch_out' do
     context 'when touch out occurs after a complete journey' do
       it 'returns false' do
         journey.record_exit(exit_station)
-        expect(journey.check_valid_touch_out).to be false
+        expect(journey.was_expecting_touch_out).to be false
       end
     end
     context 'when touch out occurs after just a touch in' do
       it 'returns true' do
-        expect(journey.check_valid_touch_out).to be true
+        expect(journey.was_expecting_touch_out).to be true
       end
     end
     context 'when there are two consecutive touch outs' do
       it 'returns false' do
         other_journey.record_exit(exit_station)
-        expect(other_journey.check_valid_touch_out).to be false
+        expect(other_journey.was_expecting_touch_out).to be false
       end
     end
   end
