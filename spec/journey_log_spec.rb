@@ -4,6 +4,7 @@ describe JourneyLog do
   let(:journey_log) { described_class.new(journey_klass) }
   let(:journey_klass) { double("journey klass") }
   let(:entry_station) { double("entry station") }
+  let(:exit_station) { double("exit station") }
   let(:journey) { double("journey", entry_station: entry_station) }
 
   context 'on initialization' do
@@ -23,6 +24,20 @@ describe JourneyLog do
     it 'stores a journey in its log' do
       journey_log.start_journey(entry_station)
       expect(journey_log.journeys).to include(journey)
+    end
+  end
+
+  describe '#end_journey' do
+    before(:each) do
+      allow(journey_klass).to receive(:new).with(entry_station).\
+        and_return(journey)
+      journey_log.start_journey(entry_station)
+      allow(journey).to receive(:record_exit).with(exit_station)
+    end
+    it 'adds an exit station to the current journey' do
+      journey_log.end_journey(exit_station)
+      last_journey = journey_log.journeys.last
+      expect(last_journey).to eq(journey)
     end
   end
 end

@@ -10,5 +10,8 @@ class JourneyLog
     journey = journey_klass.new(station)
     journeys << journey
   end
-  private
+
+  def end_journey(station)
+    journeys.last.record_exit(station)
+  end
 end
