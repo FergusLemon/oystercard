@@ -3,10 +3,11 @@ require 'oystercard'
 describe Oystercard do
   let(:oystercard) { described_class.new }
   let(:oystercard_10) { described_class.new(10) }
+  let(:another_oystercard) { described_class.new }
   let(:entry_station) { double('entry station', entry_station: 'Euston', zone: 2) }
   let(:exit_station) { double('exit station', exit_station: 'Angel', zone: 2) }
   let(:journey) { double('journey', entry_station: entry_station, exit_station: exit_station) }
-  let(:penalty_fare) { 6 }
+  PENALTY = 6
 
   context 'on initialization' do
     describe '#balance' do
@@ -59,7 +60,7 @@ balance of £#{described_class::MIN_FARE} to travel."
         oystercard.top_up(described_class::MIN_FARE)
         oystercard.touch_in(entry_station)
         expect { oystercard.touch_in(entry_station) }.to change \
-          { oystercard.balance }.by(-penalty_fare)
+          { oystercard.balance }.by(-PENALTY)
       end
     end
     context 'when the touch in is valid' do
@@ -86,7 +87,15 @@ balance of £#{described_class::MIN_FARE} to travel."
       it 'deducts the penalty fare' do
         oystercard.touch_out(exit_station)
         expect { oystercard.touch_out(exit_station) }.to change \
-          { oystercard.balance }.by(-penalty_fare)
+          { oystercard.balance }.by(-PENALTY)
+      end
+      it 'raises an error if the balance is negative' do
+        minimum_fare = described_class::MIN_FARE
+        another_oystercard.touch_out(exit_station)
+        expect { another_oystercard.touch_out(exit_station) }.to raise_error \
+          { "You have a negative balance of #{another_oystercard.balance},\
+            please top up at least #{-another_oystercard.balance + minimum_fare}\
+            before making your journey." }
       end
     end
   end
