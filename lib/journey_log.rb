@@ -23,7 +23,7 @@ class JourneyLog
   private
 
   def incomplete_journey
-    journeys.last.complete? == false
+    true unless journeys.empty? || journeys.last.complete?
   end
 
   def calculate_penalty
