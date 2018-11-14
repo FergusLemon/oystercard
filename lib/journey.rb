@@ -5,11 +5,12 @@ class Journey
 
   def initialize(station = nil)
     @entry_station = station
-    @exit_station = nil
+    @compelte = false
   end
 
-  def record_exit(station)
+  def exit(station = nil)
     @exit_station = station
+    @complete = true
   end
 
   def calculate_fare
@@ -21,7 +22,7 @@ class Journey
   end
 
   def complete?
-   true if entry_station && exit_station
+    @complete
   end
 
   def was_expecting_touch_in

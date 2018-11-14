@@ -79,11 +79,11 @@ transaction." if insufficient_funds?(amount) && @penalty == false
   def record_invalid_journey(station)
     journey = Journey.new
     journey_history << journey
-    journey_history.last.record_exit(station)
+    journey_history.last.exit(station)
   end
 
   def update_valid_journey(station)
-    journey_history.last.record_exit(station)
+    journey_history.last.exit(station)
   end
 
   def record_fare

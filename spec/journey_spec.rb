@@ -42,15 +42,15 @@ describe Journey do
     context 'when it is a valid journey' do
       it 'returns the minimun fare' do
         minimum_fare = described_class::MIN_FARE
-        journey.record_exit(exit_station)
+        journey.exit(exit_station)
         expect(journey.calculate_fare).to eq(minimum_fare)
       end
     end
   end
 
-  describe '#record_exit' do
+  describe '#exit' do
     it 'records the exit station' do
-      journey.record_exit(exit_station)
+      journey.exit(exit_station)
       expect(journey.exit_station).to eq(exit_station)
     end
   end
@@ -58,7 +58,7 @@ describe Journey do
   describe '#complete?' do
     context 'when there is and entry and an exit station' do
       it 'knows the journey is complete' do
-        journey.record_exit(exit_station)
+        journey.exit(exit_station)
         expect(journey).to be_complete
       end
     end
@@ -67,24 +67,18 @@ describe Journey do
         expect(journey).not_to be_complete
       end
     end
-    context 'when there is only an exit_station' do
-      it 'knows the journey is incomplete' do
-        other_journey.record_exit(exit_station)
-        expect(other_journey).not_to be_complete
-      end
-    end
   end
 
   describe '#was_expecting_touch_in' do
     context 'when touch in occurs after a complete journey' do
       it 'returns true' do
-        journey.record_exit(exit_station)
+        journey.exit(exit_station)
         expect(journey.was_expecting_touch_in).to be true
       end
     end
     context 'when touch in occurs after just a touch out' do
       it 'returns true' do
-        other_journey.record_exit(exit_station)
+        other_journey.exit(exit_station)
         expect(other_journey.was_expecting_touch_in).to be true
       end
     end
@@ -98,7 +92,7 @@ describe Journey do
   describe '#was_expecting_touch_out' do
     context 'when touch out occurs after a complete journey' do
       it 'returns false' do
-        journey.record_exit(exit_station)
+        journey.exit(exit_station)
         expect(journey.was_expecting_touch_out).to be false
       end
     end
@@ -109,7 +103,7 @@ describe Journey do
     end
     context 'when there are two consecutive touch outs' do
       it 'returns false' do
-        other_journey.record_exit(exit_station)
+        other_journey.exit(exit_station)
         expect(other_journey.was_expecting_touch_out).to be false
       end
     end
