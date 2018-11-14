@@ -5,6 +5,8 @@ class Oystercard
   MIN_FARE = 1
 
   def initialize(balance = DEFAULT_BALANCE, journey_log = JourneyLog.new)
+    raise "An oystercard cannot start with a negative balance." if \
+      balance < DEFAULT_BALANCE
     @balance = balance
     @journey_log = journey_log
   end
