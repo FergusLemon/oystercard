@@ -14,7 +14,7 @@ class Journey
   end
 
   def calculate_fare
-    MIN_FARE
+    penalty? ? PENALTY_FARE : MIN_FARE
   end
 
   def calculate_penalty
@@ -31,5 +31,11 @@ class Journey
 
   def was_expecting_touch_out
     self.entry_station != nil && self.exit_station == nil
+  end
+
+  private
+
+  def penalty?
+    (!entry_station || !exit_station)
   end
 end
