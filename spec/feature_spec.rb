@@ -69,14 +69,14 @@ puts oystercard.balance
 # I need to know where I've travelled from
 puts '>> oystercard.touch_in(:euston)'
 puts oystercard.touch_in(:euston)
-puts '>> oystercard.journey_history.last.entry_station'
-puts oystercard.journey_history.last.entry_station
+puts '>> oystercard'
+p oystercard
 #
 # In order to know where I have been
 # As a customer
 # I want to see to all my previous trips
-puts '>> oystercard.journey_history'
-puts oystercard.journey_history
+puts '>> oystercard'
+p oystercard
 #
 # In order to know how far I have travelled
 # As a customer
