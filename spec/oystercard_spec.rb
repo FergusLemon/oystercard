@@ -74,7 +74,7 @@ balance of £#{described_class::MIN_FARE} to travel."
 
   describe '#touch_out' do
     before(:each) do
-      oystercard.top_up(described_class::MIN_FARE)
+      oystercard.top_up(described_class::MAX_BALANCE)
       oystercard.touch_in(entry_station)
     end
     it 'reduces the balance on the card by the minimum fare' do
@@ -84,8 +84,8 @@ balance of £#{described_class::MIN_FARE} to travel."
     end
     context 'when the touch out is invalid' do
       it 'deducts the penalty fare' do
-        oystercard.touch_out(exit_station)
-        expect { oystercard.touch_out(exit_station) }.to change \
+        2.times do oystercard.touch_out(exit_station) end
+        expect { oystercard.touch_in(entry_station) }.to change \
           { oystercard.balance }.by(-penalty_fare)
       end
     end

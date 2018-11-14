@@ -1,6 +1,6 @@
 class JourneyLog
   NO_CHARGE = 0
-  attr_reader :journeys, :journey_klass
+  attr_reader :journey_klass
 
   def initialize(journey_klass = Journey)
     @journeys = []
@@ -9,7 +9,7 @@ class JourneyLog
 
   def start_journey(station)
     journey = journey_klass.new(station)
-    journeys << journey
+    add(journey)
   end
 
   def end_journey(station)
@@ -20,7 +20,15 @@ class JourneyLog
     incomplete_journey ? calculate_penalty : NO_CHARGE
   end
 
+  def journeys
+    @journeys.dup
+  end
+
   private
+
+  def add(journey)
+    @journeys << journey
+  end
 
   def incomplete_journey
     true unless journeys.empty? || journeys.last.complete?

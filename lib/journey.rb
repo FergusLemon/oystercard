@@ -22,6 +22,7 @@ class Journey
     @complete
   end
 
+
   private
 
   def penalty?

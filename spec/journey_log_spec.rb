@@ -55,4 +55,11 @@ describe JourneyLog do
       expect(journey_log.unpaid_charges).to eq(NO_CHARGE)
     end
   end
+
+  describe '#journeys' do
+    it 'does not allow users to add or remove items arbitrarily' do
+      journey_log.journeys << :random_item
+      expect(journey_log.journeys).not_to include(:random_item)
+    end
+  end
 end
