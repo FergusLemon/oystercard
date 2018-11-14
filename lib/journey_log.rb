@@ -13,7 +13,7 @@ class JourneyLog
   end
 
   def end_journey(station)
-    journeys.last.record_exit(station)
+    journeys.last.exit(station)
   end
 
   def unpaid_charges
@@ -23,11 +23,10 @@ class JourneyLog
   private
 
   def incomplete_journey
-    journeys.last.complete == false
+    journeys.last.complete? == false
   end
 
   def calculate_penalty
-    last_journey = journeys.last
-    last_journey.exit.calculate_fare
+    journeys.last.exit.calculate_fare
   end
 end

@@ -5,7 +5,7 @@ class Journey
 
   def initialize(station = nil)
     @entry_station = station
-    @compelte = false
+    @complete = false
   end
 
   def exit(station = nil)

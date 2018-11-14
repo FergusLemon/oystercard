@@ -7,7 +7,7 @@ describe JourneyLog do
   let(:exit_station) { double("exit station") }
   let(:journey) { double("journey", entry_station: entry_station) }
   NO_CHARGE = 0
-  PENLATY = 6
+  PENALTY = 6
 
   before do |example|
     unless example.metadata[:skip_before]
@@ -34,7 +34,7 @@ describe JourneyLog do
 
   describe '#end_journey' do
     before(:each) do
-      allow(journey).to receive(:record_exit).with(exit_station)
+      allow(journey).to receive(:exit).with(exit_station)
     end
     it 'adds an exit station to the current journey' do
       journey_log.end_journey(exit_station)
@@ -44,12 +44,14 @@ describe JourneyLog do
   end
 
   describe '#unpaid_charges' do
-    before(:each) do
-      allow(journey).to receive(:record_exit).with(exit_station)
+    it 'returns the penalty charge when the prior journey was incomplete' do
+      allow(journey).to receive(:complete?).and_return(false)
+      allow(journey).to receive(:exit).and_return(journey)
+      allow(journey).to receive(:calculate_fare).and_return(PENALTY)
+      expect(journey_log.unpaid_charges).to eq(PENALTY)
     end
-    it 'returns no charge when the previous journey was completed' do
-      allow(journey).to receive(:complete).and_return(true)
-      journey_log.end_journey(exit_station)
+    it 'returns no charge when the prior journey was complete' do
+      allow(journey).to receive(:complete?).and_return(true)
       expect(journey_log.unpaid_charges).to eq(NO_CHARGE)
     end
   end
