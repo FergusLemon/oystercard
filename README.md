@@ -58,7 +58,7 @@ Touch in with a card that has a sufficient balance.
 >> another_oystercard.touch_in(euston)
 #<Oystercard:0x00007fc1e405b358 @balance=50, @journey_log=#<JourneyLog:0x00007fc1e405b330 @journeys=[#<Journey:0x00007fc1e38375a0 @entry_station=#<struct Station name=:euston, zone=1>, @complete=false>], @journey_klass=Journey>>
 ```
-Touch out and the balance on the card will be reduced by the appropriate fare.
+Touch out and the balance on the card will be reduced by the appropriate fare and the complete journey will be stored in the journey log.
 ```
 >> another_oystercard.touch_out(angel)
 48
@@ -81,6 +81,17 @@ Touch in and then touch in again without touching out and a penalty fare will be
 
 >> oystercard.touch_in(tooting)
 #<Oystercard:0x00007fc1e4056858 @balance=19, @journey_log=#<JourneyLog:0x00007fc1e4056830 @journeys=[#<Journey:0x00007fc1e2951680 @entry_station=#<struct Station name=:angel, zone=2>, @complete=true, @exit_station=nil>, #<Journey:0x00007fc1e28b54d8 @entry_station=#<struct Station name=:tooting, zone=4>, @complete=false>], @journey_klass=Journey>>
+```
+You can touch out once on a zero balance oystercard but after that you will be prompted to top up your card's balance to get it back to at least the amount of the minimum fare.  You can also see that the initial touch out on a zero balance was recorded as a journey in the journey log and it incurred a penalty fare as the entry station is marked as `nil`.
+```
+>> one_more_oystercard = Oystercard.new
+#<Oystercard:0x00007fab122765b8 @balance=0, @journey_log=#<JourneyLog:0x00007fab12276590 @journeys=[], @journey_klass=Journey>>
+>> one_more_oystercard.touch_out(tooting)
+-6
+>> one_more_oystercard
+#<Oystercard:0x00007fab122765b8 @balance=-6, @journey_log=#<JourneyLog:0x00007fab12276590 @journeys=[#<Journey:0x00007fab122132b0 @entry_station=nil, @complete=true, @exit_station=#<struct Station name=:tooting, zone=4>>], @journey_klass=Journey>>
+>> one_more_oystercard.touch_out(tooting)
+RuntimeError: Your have a negative balance of (£-6) please top up to at least £2 before making your journey.
 ```
 
 ### License
