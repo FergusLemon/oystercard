@@ -24,8 +24,8 @@ of £#{MIN_FARE} to travel." if low_balance?
   end
 
   def touch_out(station)
-    raise "Your have a negative balance of (£#{balance}) please top up before \
-making your journey." if negative_balance?
+    raise "Your have a negative balance of (£#{balance}) please top up at \
+least £#{-balance + MIN_FARE} before making your journey." if negative_balance?
     journey = journey_log.end_journey(station)
     deduct(journey.calculate_fare)
   end

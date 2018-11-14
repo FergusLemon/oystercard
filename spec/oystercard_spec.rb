@@ -94,7 +94,7 @@ balance of £#{described_class::MIN_FARE} to travel."
         another_oystercard.touch_out(exit_station)
         expect { another_oystercard.touch_out(exit_station) }.to raise_error \
           { "You have a negative balance of #{another_oystercard.balance},\
-            please top up at least #{-another_oystercard.balance + minimum_fare}\
+            please top up at least £#{-another_oystercard.balance + minimum_fare}\
             before making your journey." }
       end
     end
