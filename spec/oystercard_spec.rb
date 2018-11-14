@@ -98,17 +98,4 @@ balance of £#{described_class::MIN_FARE} to travel."
       end
     end
   end
-
-#   describe '#journey_history' do
-#     before(:each) do
-#       oystercard.top_up(described_class::MIN_FARE)
-#       oystercard.touch_in(entry_station)
-#       oystercard.touch_out(exit_station)
-#     end
-#     context 'when a journey has been made' do
-#       it 'stores a record of the entry and exit stations' do
-#         expect(oystercard.journey_history).to include(journey)
-#       end
-#     end
-#   end
 end
