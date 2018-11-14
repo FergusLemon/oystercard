@@ -7,8 +7,7 @@ there are various error messages that will be encountered related to the balance
 A valid journey has an entry station and an exit station.  The fare charged for the journey is dependent on the zones of the entry and exit stations.
 
 If a user makes an invalid journey they will be charged a penalty fare.  An invalid journey is one where a touch in or touch out occurs out of sequence (a valid journey should start with a touch in
-and end with a touch out).  
-A full list of journeys will be held on each oystercard in the journeylog.
+and end with a touch out).  A full list of journeys will be held on each oystercard in the journeylog.
 
 ### Installation
 
