@@ -23,11 +23,6 @@ describe Oystercard do
         expect(described_class::MAX_BALANCE).to eq(90)
       end
     end
-    describe '#journey_history' do
-      it 'is an empty array by default' do
-        expect(oystercard.journey_history).to eq([])
-      end
-    end
   end
 
   context 'when topping up' do
@@ -86,10 +81,6 @@ balance of £#{described_class::MIN_FARE} to travel."
       minimum_fare = described_class::MIN_FARE
       expect { oystercard.touch_out(exit_station) }.to change \
         { oystercard.balance }.by(-minimum_fare)
-    end
-    it 'records the journey' do
-      oystercard.touch_out(exit_station)
-      expect(oystercard.journey_history).to_not be_empty
     end
     context 'when the touch out is invalid' do
       it 'deducts the penalty fare' do
