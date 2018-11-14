@@ -21,3 +21,8 @@ To see this run `ruby spec/feature_spec.rb` from the command line when the worki
 
 ### Code Examples
 In these code examples `>>` represents the command line prompt.  Lines without the prompt show the return value of the preceeding expression.
+
+### License
+MIT (c) 2018 Fergus Lemon
+
+See `license.txt` for more detail.
