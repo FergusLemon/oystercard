@@ -8,7 +8,6 @@ class Oystercard
     @balance = balance
     @journey_log = journey_log
     @journey_history = []
-    @penalty = false
   end
 
   def top_up(amount)
@@ -37,13 +36,9 @@ of £#{MIN_FARE} to travel." if low_balance?
   end
 
   private
-  attr_reader :penalty
 
   def deduct(amount)
-    raise "Your balance is #{balance}, you do not have enough for this \
-transaction." if insufficient_funds?(amount) && @penalty == false
     @balance -= amount
-    reset_penalty
   end
 
   def max_balance_hit?(amount)
@@ -64,12 +59,7 @@ transaction." if insufficient_funds?(amount) && @penalty == false
   end
 
   def record_penalty
-    @penalty = true
     deduct(journey_history.last.calculate_penalty)
-  end
-
-  def reset_penalty
-    @penalty = false
   end
 
   def touch_in_expected?
