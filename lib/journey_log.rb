@@ -12,12 +12,8 @@ class JourneyLog
   end
 
   def end_journey(station)
-    if journeys.last.in_progress?
-      update_journeys(station)
-    else
-      add(journey_klass.new)
-      update_journeys(station)
-    end
+    add(journey_klass.new) unless journeys.last.in_progress?
+    update_journeys(station)
   end
 
   def unpaid_charges

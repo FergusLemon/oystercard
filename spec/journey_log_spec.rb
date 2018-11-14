@@ -2,10 +2,10 @@ require 'journey_log'
 
 describe JourneyLog do
   let(:journey_log) { described_class.new(journey_klass) }
-  let(:journey_klass) { double("journey klass") }
-  let(:entry_station) { double("entry station") }
-  let(:exit_station) { double("exit station") }
-  let(:journey) { double("journey", entry_station: entry_station) }
+  let(:journey_klass) { double('journey klass') }
+  let(:entry_station) { double('entry station') }
+  let(:exit_station) { double('exit station') }
+  let(:journey) { double('journey', entry_station: entry_station) }
   NO_CHARGE = 0
   PENALTY = 6
 

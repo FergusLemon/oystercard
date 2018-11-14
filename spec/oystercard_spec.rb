@@ -3,9 +3,9 @@ require 'oystercard'
 describe Oystercard do
   let(:oystercard) { described_class.new }
   let(:oystercard_10) { described_class.new(10) }
-  let(:entry_station) { double('entry station', entry_station: "Euston", zone: 2) }
-  let(:exit_station) { double('exit station', exit_station: "Angel", zone: 2) }
-  let(:journey) { double("journey", entry_station: entry_station, exit_station: exit_station) }
+  let(:entry_station) { double('entry station', entry_station: 'Euston', zone: 2) }
+  let(:exit_station) { double('exit station', exit_station: 'Angel', zone: 2) }
+  let(:journey) { double('journey', entry_station: entry_station, exit_station: exit_station) }
   let(:penalty_fare) { 6 }
 
   context 'on initialization' do
