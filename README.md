@@ -25,4 +25,4 @@ In these code examples `>>` represents the command line prompt.  Lines without t
 ### License
 MIT (c) 2018 Fergus Lemon
 
-See `license.txt` for more detail.
+See `LICENSE` for more detail.
