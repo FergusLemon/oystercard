@@ -19,6 +19,7 @@ a lower amount." if max_balance_hit?(amount)
   def touch_in(station)
     raise "Your balance (£#{balance}) is insufficient, you need a balance \
 of £#{MIN_FARE} to travel." if low_balance?
+#    deduct(journey_log.unpaid_charges)
     record_penalty unless journey_history.empty? || touch_in_expected?
     journey = Journey.new(station)
     journey_history << journey

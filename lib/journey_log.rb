@@ -14,4 +14,14 @@ class JourneyLog
   def end_journey(station)
     journeys.last.record_exit(station)
   end
+
+  def unpaid_charges
+    incomplete_journey ? 6 : 0
+  end
+
+  private
+
+  def incomplete_journey
+    journeys.last.complete == false
+  end
 end

@@ -40,4 +40,15 @@ describe JourneyLog do
       expect(last_journey).to eq(journey)
     end
   end
+
+  describe '#unpaid_charges' do
+    before(:each) do
+      allow(journey).to receive(:record_exit).with(exit_station)
+    end
+    it 'returns no charge when the previous journey was completed' do
+      allow(journey).to receive(:complete).and_return(true)
+      journey_log.end_journey(exit_station)
+      expect(journey_log.unpaid_charges).to eq(0)
+    end
+  end
 end
