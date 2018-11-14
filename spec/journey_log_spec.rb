@@ -6,6 +6,8 @@ describe JourneyLog do
   let(:entry_station) { double("entry station") }
   let(:exit_station) { double("exit station") }
   let(:journey) { double("journey", entry_station: entry_station) }
+  NO_CHARGE = 0
+  PENLATY = 6
 
   before do |example|
     unless example.metadata[:skip_before]
@@ -48,7 +50,7 @@ describe JourneyLog do
     it 'returns no charge when the previous journey was completed' do
       allow(journey).to receive(:complete).and_return(true)
       journey_log.end_journey(exit_station)
-      expect(journey_log.unpaid_charges).to eq(0)
+      expect(journey_log.unpaid_charges).to eq(NO_CHARGE)
     end
   end
 end

@@ -1,4 +1,5 @@
 class JourneyLog
+  NO_CHARGE = 0
   attr_reader :journeys, :journey_klass
 
   def initialize(journey_klass = Journey)
@@ -16,12 +17,17 @@ class JourneyLog
   end
 
   def unpaid_charges
-    incomplete_journey ? 6 : 0
+    incomplete_journey ? calculate_penalty : NO_CHARGE
   end
 
   private
 
   def incomplete_journey
     journeys.last.complete == false
+  end
+
+  def calculate_penalty
+    last_journey = journeys.last
+    last_journey.exit.calculate_fare
   end
 end
