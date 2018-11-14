@@ -35,6 +35,7 @@ describe JourneyLog do
   describe '#end_journey' do
     before(:each) do
       allow(journey).to receive(:exit).with(exit_station)
+      allow(journey).to receive(:in_progress?).and_return(true)
     end
     it 'adds an exit station to the current journey' do
       journey_log.end_journey(exit_station)

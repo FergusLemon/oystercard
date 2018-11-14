@@ -8,12 +8,16 @@ class JourneyLog
   end
 
   def start_journey(station)
-    journey = journey_klass.new(station)
-    add(journey)
+    add(journey_klass.new(station))
   end
 
   def end_journey(station)
-    journeys.last.exit(station)
+    if journeys.last.in_progress?
+      update_journeys(station)
+    else
+      add(journey_klass.new)
+      update_journeys(station)
+    end
   end
 
   def unpaid_charges
@@ -28,6 +32,10 @@ class JourneyLog
 
   def add(journey)
     @journeys << journey
+  end
+
+  def update_journeys(station)
+    journeys.last.exit(station)
   end
 
   def incomplete_journey

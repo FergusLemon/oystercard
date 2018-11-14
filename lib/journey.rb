@@ -22,6 +22,9 @@ class Journey
     @complete
   end
 
+  def in_progress?
+    entry_station && !exit_station
+  end
 
   private
 

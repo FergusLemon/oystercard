@@ -84,8 +84,8 @@ balance of £#{described_class::MIN_FARE} to travel."
     end
     context 'when the touch out is invalid' do
       it 'deducts the penalty fare' do
-        2.times do oystercard.touch_out(exit_station) end
-        expect { oystercard.touch_in(entry_station) }.to change \
+        oystercard.touch_out(exit_station)
+        expect { oystercard.touch_out(exit_station) }.to change \
           { oystercard.balance }.by(-penalty_fare)
       end
     end
