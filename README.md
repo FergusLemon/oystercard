@@ -91,7 +91,7 @@ You can touch out once on a zero balance oystercard but after that you will be p
 >> one_more_oystercard
 #<Oystercard:0x00007fab122765b8 @balance=-6, @journey_log=#<JourneyLog:0x00007fab12276590 @journeys=[#<Journey:0x00007fab122132b0 @entry_station=nil, @complete=true, @exit_station=#<struct Station name=:tooting, zone=4>>], @journey_klass=Journey>>
 >> one_more_oystercard.touch_out(tooting)
-RuntimeError: Your have a negative balance of (£-6) please top up to at least £2 before making your journey.
+RuntimeError: Your have a negative balance of (£-6) please top up at least £7 before making your journey.
 ```
 
 ### License
