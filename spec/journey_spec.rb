@@ -1,8 +1,9 @@
 require 'journey'
 
 describe Journey do
-  let(:entry_station) { double :station }
-  let(:exit_station) { double :station }
+  let(:entry_station) { double('entry station', entry_station: "Euston", zone: 2) }
+  let(:exit_station) { double('exit station', exit_station: "Angel", zone: 2) }
+  let(:another_exit_station) { double('another_exit station', exit_station: "Tooting", zone: 4) }
   let(:journey) { described_class.new(entry_station) }
   let(:other_journey) { described_class.new }
 
@@ -44,6 +45,12 @@ describe Journey do
         minimum_fare = described_class::MIN_FARE
         journey.exit(exit_station)
         expect(journey.calculate_fare).to eq(minimum_fare)
+      end
+      it 'calculates the zone charge' do
+        minimum_fare = described_class::MIN_FARE
+        zone_fare = 2
+        journey.exit(another_exit_station)
+        expect(journey.calculate_fare).to eq(minimum_fare + zone_fare)
       end
     end
   end
