@@ -6,9 +6,11 @@ describe Oystercard do
   let(:another_oystercard) { described_class.new }
   let(:illegal_oystercard) { described_class.new(:invalid) }
   let(:another_illegal_oystercard) { described_class.new(-5) }
-  let(:entry_station) { double('entry station', entry_station: 'Euston', zone: 2) }
+  let(:entry_station)\
+  { double('entry station', entry_station: 'Euston', zone: 2) }
   let(:exit_station) { double('exit station', exit_station: 'Angel', zone: 2) }
-  let(:journey) { double('journey', entry_station: entry_station, exit_station: exit_station) }
+  let(:journey)\
+  { double('journey', entry_station: entry_station, exit_station: exit_station) }
   PENALTY = 6
   DEFAULT_BALANCE = 0
   MAX_BALANCE = described_class::MAX_BALANCE
@@ -26,12 +28,12 @@ describe Oystercard do
       end
       it 'raises an error if a non-Integer is passed' do
         expect { illegal_oystercard }.to raise_error \
-("The balance is not valid. Please try again with a whole number between\
- £#{DEFAULT_BALANCE} and £#{MAX_BALANCE}.")
+"The balance is not valid. Please try again with a whole number between\
+ £#{DEFAULT_BALANCE} and £#{MAX_BALANCE}."
       end
       it 'raises an error if a negative integer is passed' do
-        expect { another_illegal_oystercard }.to raise_error { "An oystercard\
- cannot start with a negative balance." }
+        expect { another_illegal_oystercard }.to raise_error "An oystercard\
+ cannot start with a negative balance."
       end
       it 'has a maximum balance of 90' do
         expect(described_class::MAX_BALANCE).to eq(90)
@@ -106,9 +108,9 @@ balance of £#{described_class::MIN_FARE} to travel."
         minimum_fare = described_class::MIN_FARE
         another_oystercard.touch_out(exit_station)
         expect { another_oystercard.touch_out(exit_station) }.to raise_error \
-          { "You have a negative balance of #{another_oystercard.balance},\
-            please top up at least £#{-another_oystercard.balance + minimum_fare}\
-            before making your journey." }
+           "You have a negative balance of (£#{another_oystercard.balance}),\
+ please top up at least £#{-another_oystercard.balance + minimum_fare}\
+ before making your journey."
       end
     end
   end
