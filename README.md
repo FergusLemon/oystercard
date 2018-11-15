@@ -13,6 +13,9 @@ and end with a touch out).  A full list of journeys will be held on each oysterc
 
 - [ ] **Step 1** - Clone this repository by copying the link available at the top of this webpage in the green button labelled 'Clone or Download'. 
 - [ ] **Step 2** - Open up a Terminal window (Mac OS) and run `git clone <link>` where `<link>` is what you copied in the previous step.
+```
+>> git clone https://github.com/FergusLemon/oystercard.git
+```
 - [ ] **Step 3** - `cd` into the cloned directory.
 - [ ] **Step 4** - Open `irb`, `pry` or any other interactive Ruby interpreter.
 - [ ] **Step 5** - `require` the pilot.rb file located in the `lib` directory.  Your interactive Ruby interpreter may have done this for you already depending on its configuration settings, if so jump to Step 6. 
@@ -93,6 +96,8 @@ You can touch out once on a zero balance oystercard but after that you will be p
 >> one_more_oystercard.touch_out(tooting)
 RuntimeError: Your have a negative balance of (£-6) please top up at least £7 before making your journey.
 ```
+### Test
+Unit tests can be located in the `spec` directory and can be run from the `oystercard` directory using the command `rake`.  There is also a feature spec file that contains user stories and code examples as mentioned in step 6 of the installation guide above.
 
 ### License
 MIT (c) 2018 Fergus Lemon
