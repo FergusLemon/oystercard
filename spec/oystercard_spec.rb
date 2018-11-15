@@ -4,11 +4,14 @@ describe Oystercard do
   let(:oystercard) { described_class.new }
   let(:oystercard_10) { described_class.new(10) }
   let(:another_oystercard) { described_class.new }
-  let(:illegal_oystercard) { described_class.new(-5) }
+  let(:illegal_oystercard) { described_class.new(:invalid) }
+  let(:another_illegal_oystercard) { described_class.new(-5) }
   let(:entry_station) { double('entry station', entry_station: 'Euston', zone: 2) }
   let(:exit_station) { double('exit station', exit_station: 'Angel', zone: 2) }
   let(:journey) { double('journey', entry_station: entry_station, exit_station: exit_station) }
   PENALTY = 6
+  DEFAULT_BALANCE = 0
+  MAX_BALANCE = described_class::MAX_BALANCE
 
   context 'on initialization' do
     describe '#balance' do
@@ -16,14 +19,19 @@ describe Oystercard do
         expect(oystercard).to respond_to(:balance)
       end
       it 'has a default balance of zero' do
-        expect(oystercard.balance).to eq(0)
+        expect(oystercard.balance).to eq(DEFAULT_BALANCE)
       end
       it 'can be chosen by the user when the card is purchased' do
         expect(oystercard_10.balance).to eq(10)
       end
+      it 'raises an error if a non-Integer is passed' do
+        expect { illegal_oystercard }.to raise_error \
+("The balance is not valid. Please try again with a whole number between\
+ £#{DEFAULT_BALANCE} and £#{MAX_BALANCE}.")
+      end
       it 'raises an error if a negative integer is passed' do
-        expect { illegal_oystercard }.to raise_error { "An oystercard cannot \
-start with a negative balance." }
+        expect { another_illegal_oystercard }.to raise_error { "An oystercard\
+ cannot start with a negative balance." }
       end
       it 'has a maximum balance of 90' do
         expect(described_class::MAX_BALANCE).to eq(90)
