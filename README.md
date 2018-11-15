@@ -30,6 +30,11 @@ To see this run `ruby spec/feature_spec.rb` from the command line when the worki
 ### Tests
 Unit tests can be located in the `spec` directory and can be run from the `oystercard` directory using the command `rake`.  There is also a feature spec file that contains user stories and code examples as mentioned in step 6 of the installation guide above.
 
+The Rubocop style guide has been used to inform the style of the code, most recommendations have been updated for and the remaining recommendations can be seen by using the `rubocop` command from the `oystercard` directory.  The decision was made to ignore some recommendations relating to line length due to readability and comments due to the simple nature of the objects that make up the codebase.
+
+### Dependencies
+All dependencies can be found in the `Gemfile` and `Gemfile.lock`.  Bundler was used to manage dependencies.
+
 ### Code Examples
 In these code examples `>>` represents the command line prompt.  Lines without the prompt show the return value of the preceeding expression.
 
