@@ -12,7 +12,7 @@ class JourneyLog
   end
 
   def end_journey(station)
-    add(journey_klass.new) if first_journey? || !(journeys.last.in_progress?)
+    add(journey_klass.new) if first_journey? || !journeys.last.in_progress?
     update_journeys(station)
   end
 

@@ -11,8 +11,8 @@ describe JourneyLog do
 
   before do |example|
     unless example.metadata[:skip_before]
-      allow(journey_klass).to receive(:new).with(entry_station).\
-        and_return(journey)
+      allow(journey_klass).to receive(:new).with(entry_station)\
+                                           .and_return(journey)
       journey_log.start_journey(entry_station)
     end
   end

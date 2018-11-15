@@ -7,7 +7,7 @@ class Oystercard
   def initialize(balance = DEFAULT_BALANCE, journey_log = JourneyLog.new)
     raise "The balance is not valid. Please try again with a whole number\
  between £#{DEFAULT_BALANCE} and £#{MAX_BALANCE}." unless balance.is_a? Integer
-    raise "An oystercard cannot start with a negative balance." if \
+    raise 'An oystercard cannot start with a negative balance.' if \
       balance < DEFAULT_BALANCE
     @balance = balance
     @journey_log = journey_log
