@@ -9,6 +9,11 @@ A valid journey has an entry station and an exit station.  The fare charged for 
 If a user makes an invalid journey they will be charged a penalty fare.  An invalid journey is one where a touch in or touch out occurs out of sequence (a valid journey should start with a touch in
 and end with a touch out).  A full list of journeys will be held on each oystercard in the journeylog.
 
+### Build Status
+[![Build Status](https://travis-ci.org/FergusLemon/oystercard.svg?branch=master)](https://travis-ci.org/FergusLemon/oystercard)
+
+For this project Travis CI was used and the build staus is passing.
+
 ### Installation
 
 - [ ] **Step 1** - Clone this repository by copying the link available at the top of this webpage in the green button labelled 'Clone or Download'. 
@@ -21,6 +26,9 @@ and end with a touch out).  A full list of journeys will be held on each oysterc
 - [ ] **Step 5** - `require` the pilot.rb file located in the `lib` directory.  Your interactive Ruby interpreter may have done this for you already depending on its configuration settings, if so jump to Step 6. 
 - [ ] **Step 6** - You can now instantiate objects of classes Oystercard, Station, Journey and JourneyLog and send them messages to invoke behaviour. The file `feature_spec.rb` lists user stories and exhibits much of the program's functionality.
 To see this run `ruby spec/feature_spec.rb` from the command line when the working directory is the `oystercard` directory.
+
+### Tests
+Unit tests can be located in the `spec` directory and can be run from the `oystercard` directory using the command `rake`.  There is also a feature spec file that contains user stories and code examples as mentioned in step 6 of the installation guide above.
 
 ### Code Examples
 In these code examples `>>` represents the command line prompt.  Lines without the prompt show the return value of the preceeding expression.
@@ -96,8 +104,7 @@ You can touch out once on a zero balance oystercard but after that you will be p
 >> one_more_oystercard.touch_out(tooting)
 RuntimeError: Your have a negative balance of (£-6) please top up at least £7 before making your journey.
 ```
-### Test
-Unit tests can be located in the `spec` directory and can be run from the `oystercard` directory using the command `rake`.  There is also a feature spec file that contains user stories and code examples as mentioned in step 6 of the installation guide above.
+
 
 ### License
 MIT (c) 2018 Fergus Lemon
