@@ -12,7 +12,7 @@ and end with a touch out).  A full list of journeys will be held on each oysterc
 ### Build Status
 [![Build Status](https://travis-ci.org/FergusLemon/oystercard.svg?branch=master)](https://travis-ci.org/FergusLemon/oystercard)
 
-For this project Travis CI was used and the build staus is passing.
+For this project Travis CI was used and the build status is passing.
 
 ### Installation
 
