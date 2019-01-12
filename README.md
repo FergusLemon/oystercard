@@ -1,5 +1,5 @@
 # Oystercard
-A program written in Ruby as part of the Makers Academy course (week 2).  The program attempts to implement the 'Oystercard' system used in London to travel on the underground, bus and overground nertworks.
+A command line program written in Ruby as part of the Makers Academy course (week 2).  The program attempts to implement the 'Oystercard' system used in London to travel on the underground, bus and overground nertworks.
 
 Users can get new oystercards and top them up with money so that they can touch in and touch out of stations and go on journeys.  Each oystercard has a maximum balance and
 there are various error messages that will be encountered related to the balance (money available) on the oystercard. A station has a name and a zone.
